@@ -1,0 +1,108 @@
+@baseUrl = http://localhost:3000
+
+### Health Check
+GET {{baseUrl}}/health
+
+#######################
+### PRODUCT ROUTES ###
+#######################
+
+### Get all products
+GET {{baseUrl}}/products
+
+### Get single product (replace :id)
+GET {{baseUrl}}/products/1
+
+### Create new product
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "ProductX",
+  "price": 129.99,
+  "quantity": 25
+}
+
+### Update product (replace :id)
+PUT {{baseUrl}}/products/6
+Content-Type: application/json
+
+{
+  "name": "ProductY",
+  "price": 149.99,
+  "quantity": 20
+}
+
+### Delete product (replace :id)
+DELETE {{baseUrl}}/products/3
+
+#######################
+### CLIENT ROUTES ###
+#######################
+
+### Get all clients
+GET {{baseUrl}}/clients
+
+### Get single client (replace :id)
+GET {{baseUrl}}/clients/1
+
+### Create new client
+POST {{baseUrl}}/clients
+Content-Type: application/json
+
+{
+  "name": "Alex Johnson",
+  "email": "alex.j@example.com",
+  "shipping_address": "123 Tech Street, Silicon Valley, CA"
+}
+
+### Update client (replace :id)
+PUT {{baseUrl}}/clients/6
+Content-Type: application/json
+
+{
+  "name": "Alex Johnson",
+  "email": "alex.johnson@example.com",
+  "shipping_address": "123 Tech Street, Suite 200, Silicon Valley, CA"
+}
+
+### Delete client (replace :id)
+### should fail since client has orders
+DELETE {{baseUrl}}/clients/1 
+
+### should succeed since no orders
+DELETE {{baseUrl}}/clients/6 
+
+#######################
+### ORDER ROUTES ###
+#######################
+
+### Get all orders
+GET {{baseUrl}}/orders
+
+### Get single order (replace :id)
+GET {{baseUrl}}/orders/1
+
+### Create new order
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "client_id": 1,
+  "items": [
+    {"product_id": 2, "quantity": 1},
+    {"product_id": 3, "quantity": 2}
+  ],
+  "status": "processing"
+}
+
+### Update order status (replace :id)
+PATCH {{baseUrl}}/orders/4/status
+Content-Type: application/json
+
+{
+  "status": "shipped"
+}
+
+### Delete order (replace :id)
+DELETE {{baseUrl}}/orders/4

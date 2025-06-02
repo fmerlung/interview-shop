@@ -8,21 +8,31 @@ const pool = new Pool({
     database: process.env.DB_NAME,
 });
 
-let connected = false;
+let connectionState = {
+	connected: false,
+	lastChecked: null
+}
 
 const connect = async () => {
     try {
         await pool.query("SELECT 1");
-        connected = true;
+        connectionState = {
+			connected: true,
+			lastChecked: new Date()
+		};
         console.log("Database connected");
     } catch (err) {
+        connectionState = {
+			connected: false,
+			lastChecked: new Date()
+		};
         console.error("Database connection error:", err.message);
     }
 };
 
 module.exports = {
     pool,
-    connected,
+    getConnectionStatus: () => connectionState,
     connect,
     query: (text, params) => pool.query(text, params),
 };

@@ -38,8 +38,13 @@ router.post('/', async (req, res) => {
     const { rows } = await create(name, price, quantity);
     res.status(201).json(rows[0]);
   } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
+    if (err.code === '23505') { // Unique violation
+      res.status(400).json({ error: 'name already exists' });
+	}
+	else {
+		res.status(400).json({ error: err.message });
+	}
+}
 });
 
 // Update product

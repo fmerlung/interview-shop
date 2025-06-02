@@ -17,8 +17,9 @@ app.use('/orders', orderRoutes);
 app.use('/clients', clientRoutes);
 
 // Health check
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK', db: db.connected ? 'connected' : 'disconnected' });
+app.get('/health', async (req, res) => {
+	const dbStatus = await db.getConnectionStatus();
+  res.json({ status: 'OK', db: dbStatus.connected ? 'connected' : 'disconnected' });
 });
 
 const PORT = process.env.SERVER_PORT || 3000;

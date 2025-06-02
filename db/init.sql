@@ -1,7 +1,7 @@
 -- Products Table
 CREATE TABLE IF NOT EXISTS products (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
+  name VARCHAR(255) UNIQUE NOT NULL,
   price DECIMAL(10, 2) NOT NULL,
   quantity INTEGER NOT NULL DEFAULT 0
 );
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS products (
 -- Clients Table
 CREATE TABLE IF NOT EXISTS clients (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL ,
   email VARCHAR(255) UNIQUE NOT NULL,
   shipping_address TEXT NOT NULL
 );
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS clients (
 CREATE TABLE IF NOT EXISTS orders (
   id SERIAL PRIMARY KEY,
   client_id INTEGER REFERENCES clients(id),
-  items JSONB NOT NULL, -- Stores array of {product_id, quantity}
+  items JSONB NOT NULL,
   status VARCHAR(50) NOT NULL DEFAULT 'pending',
   created_at TIMESTAMP DEFAULT NOW()
 );

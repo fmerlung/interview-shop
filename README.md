@@ -11,7 +11,11 @@ Install Docker and from the root folder run "docker-compose up"
 - `GET /products/:id` - Get specific product
 - `POST /products` - Create new product  
   ```
-  { "name": "string", "price": number, "quantity": integer }
+  { 
+    "name": "string", 
+    "price": number, 
+    "quantity": integer 
+  }
   ```
 - `PUT /products/:id` - Update product
 - `DELETE /products/:id` - Delete product
@@ -26,11 +30,11 @@ Install Docker and from the root folder run "docker-compose up"
     "status": "pending|completed|shipped"
   }
   ```
-- `DELETE /orders/:id` - Cancel order
+- `DELETE /orders/:id` - Delete order
 
 ## Clients
-- `GET /clients` - List clients
-- `POST /clients` - Register client  
+- `GET /clients` - List all clients
+- `POST /clients` - Register new client  
   ```
   {
     "name": "string",
