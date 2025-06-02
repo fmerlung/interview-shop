@@ -2,7 +2,8 @@
 A small application exposing an api of products, orders and clients using Node.js + Express and PostgreSQL
 
 # How to run
-Install Docker and from the root folder run "docker-compose up"
+Install Docker, then from the root of the project run "docker compose up".
+From this point on the api of the shop app is exposed.
 
 # API Documentation
 
