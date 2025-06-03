@@ -2,8 +2,9 @@
 A small application exposing an api of products, orders and clients using Node.js + Express and PostgreSQL
 
 # How to run
-Install Docker, then from the root of the project run "docker compose up".
-From this point on the api of the shop app is exposed.
+Install Docker, then from the root of the project run "docker compose up". \
+From this point on the api of the shop app is exposed. \
+A list of http requests used during testing can be found in the api_test.http file.
 
 # API Documentation
 
@@ -23,6 +24,7 @@ From this point on the api of the shop app is exposed.
 
 ## Orders
 - `GET /orders` - List all orders
+- `GET /orders/:id` - Get specific order
 - `POST /orders` - Create order  
   ```
   {
@@ -35,6 +37,7 @@ From this point on the api of the shop app is exposed.
 
 ## Clients
 - `GET /clients` - List all clients
+- `GET /clients/:id` - Get specific client
 - `POST /clients` - Register new client  
   ```
   {
@@ -43,3 +46,4 @@ From this point on the api of the shop app is exposed.
     "shipping_address": "string"
   }
   ```
+- `DELETE /clients/:id` - Delete client
